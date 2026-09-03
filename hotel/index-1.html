@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Website Template</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#142C2B; --ink-soft:#1D3A38; --cream:#F6EEDD; --cream-dim:#EAE0C8;
+    --saffron:#E2A33B; --pink:#D6456C; --teal:#3E8E88; --text-dark:#1B1B1B; --line:rgba(246,238,221,0.16);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--cream); color:var(--text-dark); font-family:'Work Sans', sans-serif; font-size:16px; line-height:1.5; overflow-x:hidden;}
+  h1,h2,h3,.display{font-family:'Fraunces', serif; margin:0; color:inherit;}
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+
+  /* Ticker */
+  .ticker{background:var(--pink); color:var(--cream); overflow:hidden; white-space:nowrap; border-bottom:3px solid var(--ink);}
+  .ticker-track{display:inline-flex; animation:scroll-left 26s linear infinite; padding:9px 0;}
+  .ticker-track span{font-family:'Fraunces', serif; font-style:italic; font-weight:500; font-size:15px; padding:0 26px; border-right:1px solid rgba(246,238,221,0.5);}
+  @keyframes scroll-left{0%{transform:translateX(0);} 100%{transform:translateX(-50%);}}
+
+  /* Nav */
+  nav{background:var(--ink); color:var(--cream); position:sticky; top:0; z-index:50;}
+  .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:1120px; margin:0 auto;}
+  .brand{font-family:'Fraunces', serif; font-weight:700; font-size:21px;}
+  .brand em{color:var(--saffron); font-style:normal;}
+  .nav-links{display:flex; gap:26px; list-style:none; margin:0; padding:0; font-size:14.5px;}
+  .nav-links a{text-decoration:none; opacity:0.85; transition:opacity .2s;}
+  .nav-links a:hover{opacity:1;}
+  .nav-cta{background:var(--saffron); color:var(--ink); padding:9px 18px; border-radius:2px; font-weight:600; font-size:14px; text-decoration:none; white-space:nowrap;}
+  @media (max-width:760px){ .nav-links{display:none;} }
+
+  /* Hero */
+  .hero{position:relative; background:var(--ink); color:var(--cream); padding:96px 0 0; overflow:hidden;}
+  .hero-pattern{position:absolute; inset:0; opacity:0.14; background-image:repeating-linear-gradient(45deg, var(--saffron) 0 2px, transparent 2px 34px), repeating-linear-gradient(-45deg, var(--pink) 0 2px, transparent 2px 34px); pointer-events:none;}
+  .hero-inner{position:relative; max-width:1120px; margin:0 auto; padding:0 28px 70px; display:grid; grid-template-columns:1.15fr 0.85fr; gap:50px; align-items:end;}
+  .hero-eyebrow{opacity:0; transform:translateY(14px); animation:rise .7s ease forwards; animation-delay:.15s; color:var(--saffron); font-size:14.5px; font-weight:600; margin-bottom:18px;}
+  .hero h1{opacity:0; transform:translateY(22px); animation:rise .8s ease forwards; animation-delay:.3s; font-size:clamp(40px,6vw,68px); line-height:1.03; font-weight:600;}
+  .hero h1 .accent{font-style:italic; font-weight:500; color:var(--saffron);}
+  .hero-sub{opacity:0; transform:translateY(18px); animation:rise .8s ease forwards; animation-delay:.5s; margin-top:22px; max-width:460px; font-size:17px; color:var(--cream-dim);}
+  .hero-actions{opacity:0; transform:translateY(18px); animation:rise .8s ease forwards; animation-delay:.65s; display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
+  .btn-primary{background:var(--pink); color:var(--cream); padding:14px 26px; border-radius:2px; font-weight:600; text-decoration:none; display:inline-block; transition:transform .2s ease, box-shadow .2s ease; border:none; cursor:pointer; font-size:15px; font-family:inherit;}
+  .btn-primary:hover{transform:translateY(-3px); box-shadow:0 10px 22px rgba(214,69,108,0.35);}
+  .btn-ghost{border:1px solid var(--line); color:var(--cream); padding:14px 26px; border-radius:2px; font-weight:600; text-decoration:none; display:inline-block; transition:background .2s ease;}
+  .btn-ghost:hover{background:rgba(246,238,221,0.08);}
+  .hero-stat{opacity:0; transform:translateY(18px); animation:rise .8s ease forwards; animation-delay:.8s; border-left:2px solid var(--saffron); padding-left:20px; margin-bottom:6px;}
+  .hero-stat .num{font-family:'Fraunces', serif; font-size:40px; font-weight:600; line-height:1;}
+  .hero-stat .lbl{font-size:14px; color:var(--cream-dim); margin-top:6px;}
+  @keyframes rise{to{opacity:1; transform:translateY(0);}}
+
+  section{padding:80px 0;}
+  .eyebrow{color:var(--pink); font-weight:600; font-size:14.5px; margin-bottom:12px;}
+  .section-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:44px; flex-wrap:wrap;}
+  .section-head h2{font-size:clamp(28px,3.6vw,40px); font-weight:600; max-width:520px; line-height:1.12;}
+  .section-head p{max-width:340px; color:#4A4A44; font-size:15px;}
+
+  /* Amenity strip */
+  .strip{background:var(--teal); color:var(--cream); padding:34px 0;}
+  .strip-row{display:flex; flex-wrap:wrap; gap:34px; justify-content:space-between;}
+  .strip-item{display:flex; align-items:center; gap:10px; font-size:14.5px; font-weight:600;}
+  .strip-item .dot{width:7px; height:7px; border-radius:50%; background:var(--saffron); flex:none;}
+
+  /* Rooms */
+  .rooms-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  .room-card{background:var(--ink); color:var(--cream); border-radius:2px; overflow:hidden; transition:transform .28s ease;}
+  .room-card:hover{transform:translateY(-8px);}
+  .room-card:nth-child(2){margin-top:34px;}
+  .photo-block{aspect-ratio:4/3; position:relative; display:flex; align-items:flex-end; padding:16px; overflow:hidden;}
+  .photo-block::after{content:""; position:absolute; inset:0; background-image:repeating-linear-gradient(90deg, rgba(20,44,43,0.08) 0 1px, transparent 1px 18px);}
+  .photo-block .tag{position:relative; z-index:1; font-size:12px; font-weight:600; letter-spacing:.3px; color:rgba(20,44,43,0.75); background:rgba(246,238,221,0.55); padding:5px 10px; border-radius:2px;}
+  .room-body{padding:22px 22px 26px;}
+  .room-body h3{font-size:21px; font-weight:600; margin-bottom:8px;}
+  .room-body .price{color:var(--saffron); font-weight:600; font-size:15px; margin-bottom:10px;}
+  .room-body p{font-size:14px; color:var(--cream-dim); margin-bottom:0;}
+  @media (max-width:860px){ .rooms-grid{grid-template-columns:1fr;} .room-card:nth-child(2){margin-top:0;} }
+
+  /* Restaurant */
+  .restaurant{background:var(--ink); color:var(--cream);}
+  .restaurant-grid{display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center;}
+  .restaurant .photo-block{aspect-ratio:5/4; border-radius:2px;}
+  .highlight-list{list-style:none; margin:22px 0 0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .highlight-list li{font-size:14px; padding-left:16px; position:relative; color:var(--cream-dim);}
+  .highlight-list li::before{content:""; position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--saffron);}
+  @media (max-width:860px){ .restaurant-grid{grid-template-columns:1fr;} }
+
+  /* Gallery */
+  .gallery-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  .gallery-grid .photo-block{aspect-ratio:1/1; border-radius:2px;}
+  @media (max-width:700px){ .gallery-grid{grid-template-columns:1fr 1fr;} }
+
+  /* Reviews */
+  .reviews{background:var(--cream-dim);}
+  .review-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:50px; align-items:center;}
+  .rating-box{background:var(--ink); color:var(--cream); padding:38px; border-radius:2px;}
+  .rating-box .big{font-family:'Fraunces', serif; font-size:64px; font-weight:600; line-height:1;}
+  .rating-box .stars{color:var(--saffron); font-size:20px; margin:10px 0 6px;}
+  .rating-box .count{color:var(--cream-dim); font-size:14px; margin-bottom:22px;}
+  .bar-row{display:flex; align-items:center; gap:10px; font-size:12.5px; margin-bottom:7px; color:var(--cream-dim);}
+  .bar-track{flex:1; height:6px; background:rgba(246,238,221,0.15); border-radius:4px; overflow:hidden;}
+  .bar-fill{height:100%; background:var(--saffron); border-radius:4px;}
+  .quote-list{display:flex; flex-direction:column; gap:22px;}
+  .quote{background:var(--cream); border-left:3px solid var(--pink); padding:18px 22px; font-size:14.5px; color:#3A3A34;}
+  .quote .who{display:block; margin-top:10px; font-weight:600; color:var(--ink); font-size:13px;}
+  @media (max-width:860px){ .review-grid{grid-template-columns:1fr;} }
+
+  /* Location */
+  .location-grid{display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:start;}
+  .info-row{display:flex; gap:14px; padding:16px 0; border-bottom:1px solid #DDD2B4;}
+  .info-row .k{font-weight:600; min-width:110px; font-size:14px;}
+  .info-row .v{font-size:14.5px; color:#4A4A44;}
+  .map-block{background:var(--ink); color:var(--cream-dim); border-radius:2px; aspect-ratio:1/0.85; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:30px; background-image:radial-gradient(circle at 30% 30%, rgba(226,163,59,0.18), transparent 55%), radial-gradient(circle at 75% 70%, rgba(214,69,108,0.18), transparent 55%);}
+  .map-block .pin{font-family:'Fraunces', serif; font-size:17px; color:var(--saffron); margin-bottom:8px;}
+
+  /* Enquiry form */
+  .enquiry{background:var(--pink); color:var(--cream);}
+  .enquiry-grid{display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:start;}
+  .enquiry h2{font-size:clamp(28px,3.6vw,38px); font-weight:600; margin-bottom:14px;}
+  .enquiry p{color:rgba(246,238,221,0.9); max-width:400px;}
+  form{display:flex; flex-direction:column; gap:14px;}
+  form input, form textarea{
+    width:100%; padding:13px 14px; border-radius:2px; border:1px solid rgba(246,238,221,0.4);
+    background:rgba(246,238,221,0.08); color:var(--cream); font-family:inherit; font-size:14.5px;
+  }
+  form input::placeholder, form textarea::placeholder{color:rgba(246,238,221,0.6);}
+  form .row2{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  form textarea{resize:vertical; min-height:80px;}
+  .enquiry .btn-primary{background:var(--ink); align-self:flex-start;}
+  @media (max-width:860px){ .enquiry-grid{grid-template-columns:1fr;} form .row2{grid-template-columns:1fr;} }
+
+  /* Sticky contact buttons */
+  .sticky-actions{position:fixed; right:20px; bottom:20px; display:flex; flex-direction:column; gap:12px; z-index:60;}
+  .sticky-btn{
+    width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    color:var(--cream); text-decoration:none; font-size:22px; box-shadow:0 8px 20px rgba(0,0,0,0.25);
+    transition:transform .2s ease;
+  }
+  .sticky-btn:hover{transform:scale(1.08);}
+  .sticky-btn.whatsapp{background:#2FAE60;}
+  .sticky-btn.call{background:var(--ink);}
+
+  footer{background:var(--ink); color:var(--cream-dim); padding:38px 0 26px; font-size:13px;}
+  .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; padding-bottom:22px; border-bottom:1px solid var(--line); margin-bottom:18px;}
+  .demo-badge{display:inline-block; background:var(--saffron); color:var(--ink); font-weight:700; font-size:11.5px; letter-spacing:0.4px; padding:5px 10px; border-radius:2px;}
+  .demo-note{text-align:center; color:#8FA3A0; font-size:12px; line-height:1.6;}
+
+  @media (max-width:700px){
+    .wrap{padding:0 20px;}
+    section{padding:56px 0;}
+    .hero{padding-top:70px;}
+    .hero-inner{grid-template-columns:1fr; text-align:center; align-items:center; padding:0 20px 50px; gap:34px;}
+    .hero-eyebrow{text-align:center;}
+    .hero h1{font-size:clamp(34px,9vw,44px);}
+    .hero-sub{margin-left:auto; margin-right:auto;}
+    .hero-actions{justify-content:center;}
+    .hero-stat{border-left:none; border-top:2px solid var(--saffron); padding-left:0; padding-top:16px; display:inline-block;}
+    .ticker-track span{font-size:13px; padding:0 16px;}
+    .strip-row{justify-content:center; gap:18px 26px; text-align:center;}
+    .section-head{flex-direction:column; align-items:flex-start; gap:10px; margin-bottom:32px;}
+    .section-head p{max-width:100%;}
+    .gallery-grid{grid-template-columns:1fr 1fr;}
+    .location-grid{grid-template-columns:1fr; gap:34px;}
+    .info-row{flex-direction:column; gap:4px;}
+    .info-row .k{min-width:0;}
+    .footer-row{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="ticker"><div id="ticker-track" class="ticker-track"></div></div>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="brand" id="nav-brand"></div>
+      <ul class="nav-links">
+        <li><a href="#rooms">Rooms</a></li>
+        <li><a href="#restaurant">Restaurant</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#location">Location</a></li>
+      </ul>
+      <a class="nav-cta" href="#enquire">Check availability</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-pattern"></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow" id="hero-eyebrow"></div>
+        <h1 id="hero-heading"></h1>
+        <p class="hero-sub" id="hero-sub"></p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#enquire">Check availability</a>
+          <a class="btn-ghost" href="#rooms">See rooms</a>
+        </div>
+      </div>
+      <div class="hero-stat">
+        <div class="num" id="hero-rating"></div>
+        <div class="lbl" id="hero-rating-label"></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="strip"><div class="wrap strip-row" id="amenity-strip"></div></div>
+
+  <section id="rooms">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Three ways to stay in the middle of it all</h2>
+        <p>Real photos and live rates get added once this goes live.</p>
+      </div>
+      <div class="rooms-grid" id="rooms-grid"></div>
+    </div>
+  </section>
+
+  <section id="restaurant" class="restaurant">
+    <div class="wrap restaurant-grid">
+      <div>
+        <div class="eyebrow">On site</div>
+        <h2 id="restaurant-name" style="font-size:clamp(26px,3.4vw,36px); font-weight:600; margin-bottom:16px;"></h2>
+        <p id="restaurant-desc" style="color:var(--cream-dim); font-size:15px; max-width:460px;"></p>
+        <ul class="highlight-list" id="restaurant-highlights"></ul>
+      </div>
+      <div class="photo-block" id="restaurant-photo"></div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>A look inside</h2>
+        <p>Gallery is ready to receive real photography.</p>
+      </div>
+      <div class="gallery-grid" id="gallery-grid"></div>
+    </div>
+  </section>
+
+  <section id="reviews" class="reviews">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What guests are already saying</h2>
+        <p>Pulled from the current Google listing — real numbers.</p>
+      </div>
+      <div class="review-grid">
+        <div class="rating-box">
+          <div class="big" id="review-rating"></div>
+          <div class="stars" id="review-stars"></div>
+          <div class="count" id="review-count"></div>
+          <div id="review-bars"></div>
+        </div>
+        <div class="quote-list" id="review-quotes"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="location">
+    <div class="wrap location-grid">
+      <div>
+        <div class="eyebrow">Find us</div>
+        <h2 id="location-heading" style="font-size:clamp(26px,3.4vw,34px); font-weight:600; margin-bottom:24px;"></h2>
+        <div class="info-row"><div class="k">Address</div><div class="v" id="loc-address"></div></div>
+        <div class="info-row"><div class="k">Phone</div><div class="v" id="loc-phone"></div></div>
+        <div class="info-row"><div class="k">Nearby</div><div class="v" id="loc-nearby"></div></div>
+      </div>
+      <div class="map-block">
+        <div class="pin" id="map-pin"></div>
+        <div>Live Google Map embed goes here in the full build — <span id="map-note"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="enquire" class="enquiry">
+    <div class="wrap enquiry-grid">
+      <div>
+        <h2>Send an enquiry</h2>
+        <p>Fill this in and it opens straight in WhatsApp, ready to send — no booking software required.</p>
+      </div>
+      <form id="enquiry-form">
+        <div class="row2">
+          <input type="text" id="f-name" placeholder="Your name" required>
+          <input type="tel" id="f-phone" placeholder="Your phone">
+        </div>
+        <div class="row2">
+          <input type="date" id="f-checkin">
+          <input type="date" id="f-checkout">
+        </div>
+        <textarea id="f-message" placeholder="Anything else we should know? (guests, room type...)"></textarea>
+        <button type="submit" class="btn-primary">Send via WhatsApp</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-row">
+        <span class="demo-badge">Demo Preview</span>
+        <span id="footer-name"></span>
+      </div>
+      <div class="demo-note">Prototype built as a sales preview — not for production use. Photos and final content are added upon sign-off.</div>
+    </div>
+  </footer>
+
+  <div class="sticky-actions">
+    <a class="sticky-btn whatsapp" id="sticky-whatsapp" href="#" target="_blank" title="WhatsApp">💬</a>
+    <a class="sticky-btn call" id="sticky-call" href="#" title="Call">📞</a>
+  </div>
+
+<script src="data.js"></script>
+<script>
+/* ============================================================
+   RENDER ENGINE — reads HOTEL from data.js. Do not edit
+   unless you're changing the page structure itself.
+   ============================================================ */
+const h = HOTEL;
+
+// Ticker
+document.getElementById('ticker-track').innerHTML =
+  Array(2).fill([h.name, "Free Wi-Fi & parking", `${h.reviewCount} guest reviews`, h.neighborhood])
+    .flat().map(t => `<span>${t}</span>`).join('');
+
+// Nav + footer
+document.getElementById('nav-brand').innerHTML = h.name.replace(/&/,'<em>&</em>');
+document.getElementById('footer-name').textContent = `${h.name} — ${h.neighborhood}`;
+
+// Hero
+document.getElementById('hero-eyebrow').textContent = h.neighborhood;
+document.getElementById('hero-heading').innerHTML =
+  `${h.heroLine1}<br>${h.heroLine2} <span class="accent">${h.heroAccent}</span><br>${h.heroLine3}`;
+document.getElementById('hero-sub').textContent = h.heroSub;
+document.getElementById('hero-rating').textContent = `${h.rating} ★`;
+document.getElementById('hero-rating-label').textContent = `from ${h.reviewCount} guest reviews on Google`;
+
+// Amenity strip
+document.getElementById('amenity-strip').innerHTML =
+  h.amenities.map(a => `<div class="strip-item"><span class="dot"></span>${a}</div>`).join('');
+
+// Rooms
+document.getElementById('rooms-grid').innerHTML = h.rooms.map(r => `
+  <div class="room-card">
+    <div class="photo-block"><span class="tag">${r.name}</span></div>
+    <div class="room-body">
+      <h3>${r.name}</h3>
+      <div class="price">${r.price}</div>
+      <p>${r.blurb}</p>
+    </div>
+  </div>`).join('');
+
+// Restaurant
+document.getElementById('restaurant-name').textContent = h.restaurant.name;
+document.getElementById('restaurant-desc').textContent = h.restaurant.description;
+document.getElementById('restaurant-highlights').innerHTML =
+  h.restaurant.highlights.map(x => `<li>${x}</li>`).join('');
+document.getElementById('restaurant-photo').innerHTML = `<span class="tag">${h.restaurant.name}</span>`;
+
+// Gallery
+document.getElementById('gallery-grid').innerHTML =
+  h.gallery.map(g => `<div class="photo-block"><span class="tag">${g.label}</span></div>`).join('');
+
+// Reviews
+document.getElementById('review-rating').textContent = h.rating;
+document.getElementById('review-stars').textContent = '★'.repeat(Math.round(h.rating)) + '☆'.repeat(5-Math.round(h.rating));
+document.getElementById('review-count').textContent = `Based on ${h.reviewCount} Google reviews`;
+document.getElementById('review-bars').innerHTML = Object.entries(h.ratingBreakdown).reverse().map(([star,pct]) => `
+  <div class="bar-row"><span>${star}</span><div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div></div>
+`).join('');
+document.getElementById('review-quotes').innerHTML = h.reviews.map(r => `
+  <div class="quote">${r.quote}<span class="who">${r.who}</span></div>
+`).join('');
+
+// Location
+document.getElementById('location-heading').textContent = `${h.address.split(',')[0]}, right where the bazaar never sleeps.`;
+document.getElementById('loc-address').textContent = h.address;
+document.getElementById('loc-phone').textContent = h.phoneDisplay;
+document.getElementById('loc-nearby').textContent = h.nearbyNote;
+document.getElementById('map-pin').textContent = `📍 ${h.name}`;
+document.getElementById('map-note').textContent = h.mapNote;
+
+// Sticky buttons
+document.getElementById('sticky-whatsapp').href = `https://wa.me/${h.whatsappNumber}`;
+document.getElementById('sticky-call').href = `tel:${h.phoneLink}`;
+
+// Enquiry form -> WhatsApp deep link
+document.getElementById('enquiry-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('f-name').value;
+  const phone = document.getElementById('f-phone').value;
+  const checkin = document.getElementById('f-checkin').value;
+  const checkout = document.getElementById('f-checkout').value;
+  const message = document.getElementById('f-message').value;
+  let text = `Hi, I'd like to enquire about a stay at ${h.name}.\nName: ${name}`;
+  if(phone) text += `\nPhone: ${phone}`;
+  if(checkin) text += `\nCheck-in: ${checkin}`;
+  if(checkout) text += `\nCheck-out: ${checkout}`;
+  if(message) text += `\nNote: ${message}`;
+  window.open(`https://wa.me/${h.whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
+});
+</script>
+</body>
+</html>

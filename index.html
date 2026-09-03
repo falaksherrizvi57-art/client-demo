@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunrise Hotel & Restaurant — Anarkali Bazaar, Lahore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#142C2B;
+    --ink-soft:#1D3A38;
+    --cream:#F6EEDD;
+    --cream-dim:#EAE0C8;
+    --saffron:#E2A33B;
+    --pink:#D6456C;
+    --teal:#3E8E88;
+    --text-dark:#1B1B1B;
+    --line:rgba(246,238,221,0.16);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--text-dark);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    margin:0;
+    color:inherit;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* ---------- Ticker ---------- */
+  .ticker{
+    background:var(--pink);
+    color:var(--cream);
+    overflow:hidden;
+    white-space:nowrap;
+    border-bottom:3px solid var(--ink);
+  }
+  .ticker-track{
+    display:inline-flex;
+    animation:scroll-left 26s linear infinite;
+    padding:9px 0;
+  }
+  .ticker-track span{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:15px;
+    padding:0 26px;
+    border-right:1px solid rgba(246,238,221,0.5);
+  }
+  @keyframes scroll-left{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-50%);}
+  }
+
+  /* ---------- Nav ---------- */
+  nav{
+    background:var(--ink);
+    color:var(--cream);
+    position:sticky;
+    top:0;
+    z-index:50;
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 28px;
+    max-width:1120px;
+    margin:0 auto;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:21px;
+    letter-spacing:0.2px;
+  }
+  .brand em{color:var(--saffron); font-style:normal;}
+  .nav-links{display:flex; gap:28px; list-style:none; margin:0; padding:0; font-size:14.5px;}
+  .nav-links a{text-decoration:none; opacity:0.85; transition:opacity .2s;}
+  .nav-links a:hover{opacity:1;}
+  .nav-cta{
+    background:var(--saffron);
+    color:var(--ink);
+    padding:9px 18px;
+    border-radius:2px;
+    font-weight:600;
+    font-size:14px;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  @media (max-width:760px){ .nav-links{display:none;} }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    background:var(--ink);
+    color:var(--cream);
+    padding:96px 0 0;
+    overflow:hidden;
+  }
+  .hero-pattern{
+    position:absolute;
+    inset:0;
+    opacity:0.14;
+    background-image:
+      repeating-linear-gradient(45deg, var(--saffron) 0 2px, transparent 2px 34px),
+      repeating-linear-gradient(-45deg, var(--pink) 0 2px, transparent 2px 34px);
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative;
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 28px 70px;
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:50px;
+    align-items:end;
+  }
+  .hero-eyebrow{
+    opacity:0;
+    transform:translateY(14px);
+    animation:rise .7s ease forwards;
+    animation-delay:.15s;
+    color:var(--saffron);
+    font-size:14.5px;
+    font-weight:600;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    opacity:0;
+    transform:translateY(22px);
+    animation:rise .8s ease forwards;
+    animation-delay:.3s;
+    font-size:clamp(40px,6vw,68px);
+    line-height:1.03;
+    font-weight:600;
+  }
+  .hero h1 .accent{
+    font-style:italic;
+    font-weight:500;
+    color:var(--saffron);
+  }
+  .hero-sub{
+    opacity:0;
+    transform:translateY(18px);
+    animation:rise .8s ease forwards;
+    animation-delay:.5s;
+    margin-top:22px;
+    max-width:460px;
+    font-size:17px;
+    color:var(--cream-dim);
+  }
+  .hero-actions{
+    opacity:0;
+    transform:translateY(18px);
+    animation:rise .8s ease forwards;
+    animation-delay:.65s;
+    display:flex;
+    gap:14px;
+    margin-top:32px;
+    flex-wrap:wrap;
+  }
+  .btn-primary{
+    background:var(--pink);
+    color:var(--cream);
+    padding:14px 26px;
+    border-radius:2px;
+    font-weight:600;
+    text-decoration:none;
+    display:inline-block;
+    transition:transform .2s ease, box-shadow .2s ease;
+    box-shadow:0 0 0 rgba(214,69,108,0);
+  }
+  .btn-primary:hover{transform:translateY(-3px); box-shadow:0 10px 22px rgba(214,69,108,0.35);}
+  .btn-ghost{
+    border:1px solid var(--line);
+    color:var(--cream);
+    padding:14px 26px;
+    border-radius:2px;
+    font-weight:600;
+    text-decoration:none;
+    display:inline-block;
+    transition:background .2s ease;
+  }
+  .btn-ghost:hover{background:rgba(246,238,221,0.08);}
+
+  .hero-stat{
+    opacity:0;
+    transform:translateY(18px);
+    animation:rise .8s ease forwards;
+    animation-delay:.8s;
+    border-left:2px solid var(--saffron);
+    padding-left:20px;
+    margin-bottom:6px;
+  }
+  .hero-stat .num{
+    font-family:'Fraunces', serif;
+    font-size:44px;
+    font-weight:600;
+    line-height:1;
+  }
+  .hero-stat .lbl{
+    font-size:14px;
+    color:var(--cream-dim);
+    margin-top:6px;
+  }
+
+  @keyframes rise{
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  /* ---------- Section shell ---------- */
+  section{padding:80px 0;}
+  .eyebrow{
+    color:var(--pink);
+    font-weight:600;
+    font-size:14.5px;
+    margin-bottom:12px;
+  }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    margin-bottom:44px;
+    flex-wrap:wrap;
+  }
+  .section-head h2{
+    font-size:clamp(28px,3.6vw,40px);
+    font-weight:600;
+    max-width:520px;
+    line-height:1.12;
+  }
+  .section-head p{
+    max-width:340px;
+    color:#4A4A44;
+    font-size:15px;
+  }
+
+  /* ---------- Strip: amenities ---------- */
+  .strip{
+    background:var(--teal);
+    color:var(--cream);
+    padding:34px 0;
+  }
+  .strip-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:34px;
+    justify-content:space-between;
+  }
+  .strip-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:14.5px;
+    font-weight:600;
+  }
+  .strip-item .dot{
+    width:7px;height:7px;border-radius:50%;background:var(--saffron);flex:none;
+  }
+
+  /* ---------- Rooms (offset cards) ---------- */
+  .rooms-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:26px;
+  }
+  .room-card{
+    background:var(--ink);
+    color:var(--cream);
+    border-radius:2px;
+    overflow:hidden;
+    transition:transform .28s ease;
+  }
+  .room-card:hover{transform:translateY(-8px);}
+  .room-card:nth-child(2){ margin-top:34px; }
+  .room-photo{
+    aspect-ratio:4/3;
+    background:linear-gradient(135deg, var(--pink), var(--saffron));
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:rgba(20,44,43,0.85);
+    font-weight:600;
+    font-size:13px;
+    text-align:center;
+    padding:16px;
+  }
+  .room-photo::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:repeating-linear-gradient(90deg, rgba(20,44,43,0.08) 0 1px, transparent 1px 18px);
+  }
+  .room-body{padding:22px 22px 26px;}
+  .room-body h3{font-size:21px; font-weight:600; margin-bottom:8px;}
+  .room-body .price{color:var(--saffron); font-weight:600; font-size:15px; margin-bottom:10px;}
+  .room-body p{font-size:14px; color:var(--cream-dim); margin-bottom:0;}
+  @media (max-width:860px){
+    .rooms-grid{grid-template-columns:1fr;}
+    .room-card:nth-child(2){margin-top:0;}
+  }
+
+  /* ---------- Reviews ---------- */
+  .reviews{
+    background:var(--cream-dim);
+  }
+  .review-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:50px;
+    align-items:center;
+  }
+  .rating-box{
+    background:var(--ink);
+    color:var(--cream);
+    padding:38px;
+    border-radius:2px;
+  }
+  .rating-box .big{
+    font-family:'Fraunces', serif;
+    font-size:64px;
+    font-weight:600;
+    line-height:1;
+  }
+  .rating-box .stars{color:var(--saffron); font-size:20px; margin:10px 0 6px;}
+  .rating-box .count{color:var(--cream-dim); font-size:14px; margin-bottom:22px;}
+  .bar-row{display:flex; align-items:center; gap:10px; font-size:12.5px; margin-bottom:7px; color:var(--cream-dim);}
+  .bar-track{flex:1; height:6px; background:rgba(246,238,221,0.15); border-radius:4px; overflow:hidden;}
+  .bar-fill{height:100%; background:var(--saffron); border-radius:4px;}
+
+  .quote-list{display:flex; flex-direction:column; gap:22px;}
+  .quote{
+    background:var(--cream);
+    border-left:3px solid var(--pink);
+    padding:18px 22px;
+    font-size:14.5px;
+    color:#3A3A34;
+  }
+  .quote .who{
+    display:block;
+    margin-top:10px;
+    font-weight:600;
+    color:var(--ink);
+    font-size:13px;
+  }
+  @media (max-width:860px){ .review-grid{grid-template-columns:1fr;} }
+
+  /* ---------- Location ---------- */
+  .location-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:44px;
+    align-items:start;
+  }
+  .info-row{
+    display:flex;
+    gap:14px;
+    padding:16px 0;
+    border-bottom:1px solid #DDD2B4;
+  }
+  .info-row .k{font-weight:600; min-width:110px; font-size:14px;}
+  .info-row .v{font-size:14.5px; color:#4A4A44;}
+  .map-block{
+    background:var(--ink);
+    color:var(--cream-dim);
+    border-radius:2px;
+    aspect-ratio:1/0.85;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:30px;
+    background-image:radial-gradient(circle at 30% 30%, rgba(226,163,59,0.18), transparent 55%), radial-gradient(circle at 75% 70%, rgba(214,69,108,0.18), transparent 55%);
+  }
+  .map-block .pin{font-family:'Fraunces', serif; font-size:17px; color:var(--saffron); margin-bottom:8px;}
+
+  /* ---------- CTA ---------- */
+  .cta{
+    background:var(--pink);
+    color:var(--cream);
+    text-align:center;
+  }
+  .cta h2{font-size:clamp(30px,4vw,46px); margin-bottom:16px; font-weight:600;}
+  .cta p{max-width:480px; margin:0 auto 30px; color:rgba(246,238,221,0.9);}
+  .cta .btn-primary{background:var(--ink);}
+  .cta .btn-primary:hover{box-shadow:0 10px 22px rgba(20,44,43,0.4);}
+
+  /* ---------- Footer / demo notice ---------- */
+  footer{
+    background:var(--ink);
+    color:var(--cream-dim);
+    padding:38px 0 26px;
+    font-size:13px;
+  }
+  .footer-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:14px;
+    padding-bottom:22px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:18px;
+  }
+  .demo-badge{
+    display:inline-block;
+    background:var(--saffron);
+    color:var(--ink);
+    font-weight:700;
+    font-size:11.5px;
+    letter-spacing:0.4px;
+    padding:5px 10px;
+    border-radius:2px;
+  }
+  .demo-note{
+    text-align:center;
+    color:#8FA3A0;
+    font-size:12px;
+    line-height:1.6;
+  }
+</style>
+</head>
+<body>
+
+  <div class="ticker">
+    <div class="ticker-track">
+      <span>Anarkali Bazaar, Lahore</span>
+      <span>Rooms above the Food Street</span>
+      <span>Breakfast on the house</span>
+      <span>Free Wi-Fi &amp; parking</span>
+      <span>124 guest reviews</span>
+      <span>Anarkali Bazaar, Lahore</span>
+      <span>Rooms above the Food Street</span>
+      <span>Breakfast on the house</span>
+      <span>Free Wi-Fi &amp; parking</span>
+      <span>124 guest reviews</span>
+    </div>
+  </div>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="brand">Sunrise <em>Hotel &amp; Restaurant</em></div>
+      <ul class="nav-links">
+        <li><a href="#rooms">Rooms</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#location">Location</a></li>
+      </ul>
+      <a class="nav-cta" href="#book">Check availability</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-pattern"></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">Anarkali Bazaar · Old Lahore</div>
+        <h1>Sleep two floors<br>above the <span class="accent">loudest,<br>tastiest street</span><br>in Lahore.</h1>
+        <p class="hero-sub">Sunrise Hotel &amp; Restaurant sits right inside Anarkali Food Street — rickshaws, karahi smoke, and 200 years of bazaar noise, with a quiet room and a hot breakfast waiting upstairs.</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#book">Check availability</a>
+          <a class="btn-ghost" href="#rooms">See rooms</a>
+        </div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">3.7 ★</div>
+        <div class="lbl">from 124 guest reviews on Google</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="strip">
+    <div class="wrap strip-row">
+      <div class="strip-item"><span class="dot"></span>Free Wi-Fi</div>
+      <div class="strip-item"><span class="dot"></span>Free breakfast</div>
+      <div class="strip-item"><span class="dot"></span>Free parking</div>
+      <div class="strip-item"><span class="dot"></span>Pool</div>
+      <div class="strip-item"><span class="dot"></span>Laundry service</div>
+      <div class="strip-item"><span class="dot"></span>Room service</div>
+    </div>
+  </div>
+
+  <section id="rooms">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Three ways to stay in the middle of it all</h2>
+        <p>Placeholder rooms below — swap in your real photos and rates before this goes live for guests.</p>
+      </div>
+      <div class="rooms-grid">
+        <div class="room-card">
+          <div class="room-photo">Add a photo of the<br>Bazaar View Room</div>
+          <div class="room-body">
+            <h3>Bazaar View Room</h3>
+            <div class="price">from PKR 6,500 / night</div>
+            <p>A window seat over the food street, one queen bed, free Wi-Fi and breakfast included.</p>
+          </div>
+        </div>
+        <div class="room-card">
+          <div class="room-photo">Add a photo of the<br>Courtyard Deluxe</div>
+          <div class="room-body">
+            <h3>Courtyard Deluxe</h3>
+            <div class="price">from PKR 8,200 / night</div>
+            <p>Quieter, set back from the street, with pool access and daily laundry service.</p>
+          </div>
+        </div>
+        <div class="room-card">
+          <div class="room-photo">Add a photo of the<br>Family Suite</div>
+          <div class="room-body">
+            <h3>Family Suite</h3>
+            <div class="price">from PKR 11,000 / night</div>
+            <p>Two rooms, one entrance, room service on call — built for families passing through.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="reviews">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What guests are already saying</h2>
+        <p>Pulled from your current Google listing — real numbers, no placeholders here.</p>
+      </div>
+      <div class="review-grid">
+        <div class="rating-box">
+          <div class="big">3.7</div>
+          <div class="stars">★★★★☆</div>
+          <div class="count">Based on 124 Google reviews</div>
+          <div class="bar-row"><span>5</span><div class="bar-track"><div class="bar-fill" style="width:46%"></div></div></div>
+          <div class="bar-row"><span>4</span><div class="bar-track"><div class="bar-fill" style="width:27%"></div></div></div>
+          <div class="bar-row"><span>3</span><div class="bar-track"><div class="bar-fill" style="width:14%"></div></div></div>
+          <div class="bar-row"><span>2</span><div class="bar-track"><div class="bar-fill" style="width:7%"></div></div></div>
+          <div class="bar-row"><span>1</span><div class="bar-track"><div class="bar-fill" style="width:6%"></div></div></div>
+        </div>
+        <div class="quote-list">
+          <div class="quote">Right in the heart of Anarkali — you can smell the karahi from the room. Staff were quick to help with everything we needed.<span class="who">Placeholder review — swap for a real guest quote</span></div>
+          <div class="quote">Simple rooms, but the location can't be beaten if you want to be close to the food street and the old city.<span class="who">Placeholder review — swap for a real guest quote</span></div>
+          <div class="quote">Breakfast was included and the parking made it easy to bring the whole family.<span class="who">Placeholder review — swap for a real guest quote</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="location">
+    <div class="wrap location-grid">
+      <div>
+        <div class="eyebrow">Find us</div>
+        <h2 style="font-size:clamp(26px,3.4vw,34px); font-weight:600; margin-bottom:24px;">40 Anarkali Food St, right where the bazaar never sleeps.</h2>
+        <div class="info-row"><div class="k">Address</div><div class="v">40 Anarkali Food St, Anarkali Bazaar, Lahore, 54000, Pakistan</div></div>
+        <div class="info-row"><div class="k">Phone</div><div class="v">+92 321 5555891</div></div>
+        <div class="info-row"><div class="k">Neighborhood</div><div class="v">Anarkali Bazaar — rated excellent for sightseeing, food, and getting around</div></div>
+        <div class="info-row"><div class="k">Next door</div><div class="v">Goodshot Snooker, open till 4 AM, right at this address</div></div>
+      </div>
+      <div class="map-block">
+        <div class="pin">📍 Sunrise Hotel &amp; Restaurant</div>
+        <div>Live Google Map embed goes here in the full build —<br>guests can tap through to directions instantly.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="book" class="cta">
+    <div class="wrap">
+      <h2>This is the preview.<br>The full site takes bookings.</h2>
+      <p>The full build adds real room photos, live pricing, and a booking form that lands straight in your inbox or WhatsApp — no phone tag required.</p>
+      <a class="btn-primary" href="#">Let's build the full site</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-row">
+        <span class="demo-badge">Demo Preview</span>
+        <span>Sunrise Hotel &amp; Restaurant — Anarkali Bazaar, Lahore</span>
+      </div>
+      <div class="demo-note">Prototype built as a sales preview — not for production use. Photos, pricing, and copy are placeholders pending final content and sign-off.</div>
+    </div>
+  </footer>
+
+</body>
+</html>

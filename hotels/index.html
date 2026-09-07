@@ -1,1 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Luxury Hotel Demo</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
+    <style>
+        :root {
+            --primary: #0F172A; --accent: #C5A059; --accent-hover: #b08d4b;
+            --light: #F8FAFC; --text-dark: #334155; --text-light: #64748B; --white: #FFFFFF;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background-color: var(--light); color: var(--text-dark); line-height: 1.7; overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        
+        /* Navigation */
+        nav { position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px); z-index: 1000; }
+        .logo { font-size: 1.5rem; color: var(--white); font-weight: 700; letter-spacing: 2px; }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 30px; align-items: center; list-style: none; }
+        .nav-links a { color: var(--white); text-decoration: none; font-size: 0.95rem; }
+        .btn-book { background-color: var(--accent); color: var(--white) !important; padding: 10px 22px; border-radius: 4px; font-weight: 500; }
+
+        /* Hero */
+        header.hero { height: 100vh; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); padding: 0 20px; }
+        .hero-content h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 20px; }
+        .hero-content p { font-size: clamp(1rem, 2vw, 1.25rem); max-width: 600px; margin: 0 auto 30px; color: #E2E8F0; }
+
+        /* Sections & Grids (Simplified for Template Engine) */
+        .section { padding: 100px 8%; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-text h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
+        .about-images { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .about-images img { width: 100%; border-radius: 8px; object-fit: cover; }
+        .about-images img:nth-child(2) { margin-top: 40px; }
+
+        /* Rooms Grid */
+        .rooms-section { background-color: #F1F5F9; }
+        .section-header { text-align: center; max-width: 600px; margin: 0 auto 60px; }
+        .rooms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .room-card { background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .room-img { height: 250px; } .room-img img { width: 100%; height: 100%; object-fit: cover; }
+        .room-details { padding: 25px; }
+        .room-price { font-size: 1.25rem; color: var(--accent); font-weight: 700; margin-bottom: 20px; }
+        .btn-outline { display: block; text-align: center; border: 1px solid var(--primary); color: var(--primary); padding: 10px; border-radius: 4px; text-decoration: none; font-weight: 600; }
+
+        /* Footer */
+        footer { background: #090E17; color: #94A3B8; padding: 60px 8% 20px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-col h3 { color: var(--white); margin-bottom: 20px; }
+        .footer-bottom { text-align: center; border-top: 1px solid #1E293B; padding-top: 20px; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo" id="nav-logo">HOTEL <span>NAME</span></div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#rooms">Rooms</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#rooms" class="btn-book">Book Now</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero" id="hero-bg" data-aos="fade">
+        <div class="hero-content" data-aos="fade-up">
+            <h1 id="hero-title">Loading...</h1>
+            <p id="hero-subtitle">Please wait</p>
+            <a href="#rooms" class="btn-book" style="padding: 14px 30px;">Explore Rooms</a>
+        </div>
+    </header>
+
+    <section id="about" class="section">
+        <div class="about-grid">
+            <div class="about-text" data-aos="fade-right">
+                <h4 style="color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Welcome</h4>
+                <h2 id="about-heading">A Tradition of Luxury</h2>
+                <p id="about-desc-1">Loading details...</p>
+                <p id="about-desc-2">Loading details...</p>
+            </div>
+            <div class="about-images" data-aos="fade-left">
+                <img id="about-img-1" src="" alt="Hotel">
+                <img id="about-img-2" src="" alt="Hotel">
+            </div>
+        </div>
+    </section>
+
+    <section id="rooms" class="section rooms-section">
+        <div class="section-header" data-aos="fade-up">
+            <h4 style="color: var(--accent); text-transform: uppercase; letter-spacing: 2px;">Accommodation</h4>
+            <h2>Rooms & Luxury Suites</h2>
+        </div>
+        <div class="rooms-grid" id="rooms-container">
+            </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3 id="footer-logo">HOTEL NAME</h3>
+                <p id="footer-tagline">Providing ultimate luxury and absolute comfort.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Info</h3>
+                <p><i class="fa-solid fa-location-dot"></i> <span id="f-address">Address</span></p>
+                <p><i class="fa-solid fa-phone"></i> <span id="f-phone">Phone</span></p>
+                <p><i class="fa-solid fa-envelope"></i> <span id="f-email">Email</span></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 <span id="copy-name">Hotel</span>. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inject Data into HTML Elements Automatically
+        document.getElementById('page-title').innerText = `${hotelData.name} | Luxury Hotel`;
+        document.getElementById('nav-logo').innerHTML = `${hotelData.name.split(' ')[0]} <span>${hotelData.name.split(' ').slice(1).join(' ')}</span>`;
+        document.getElementById('hero-bg').style.backgroundImage = `linear-gradient(rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.7)), url('${hotelData.heroImage}')`;
+        document.getElementById('hero-title').innerText = hotelData.tagline;
+        document.getElementById('hero-subtitle').innerText = hotelData.subheading;
+        
+        document.getElementById('about-heading').innerText = `A Tradition of Excellence at ${hotelData.name}`;
+        document.getElementById('about-desc-1').innerText = `Nestled in the prime location, ${hotelData.name} combines timeless architecture with contemporary luxury.`;
+        document.getElementById('about-desc-2').innerText = `Our dedicated 24/7 concierge team ensures your stay is nothing short of extraordinary.`;
+        document.getElementById('about-img-1').src = hotelData.aboutImg1;
+        document.getElementById('about-img-2').src = hotelData.aboutImg2;
+
+        document.getElementById('footer-logo').innerText = hotelData.name.toUpperCase();
+        document.getElementById('footer-tagline').innerText = hotelData.tagline;
+        document.getElementById('f-address').innerText = hotelData.address;
+        document.getElementById('f-phone').innerText = hotelData.phone;
+        document.getElementById('f-email').innerText = hotelData.email;
+        document.getElementById('copy-name').innerText = hotelData.name;
+
+        // Render Rooms Dynamically
+        const roomsContainer = document.getElementById('rooms-container');
+        hotelData.rooms.forEach(room => {
+            roomsContainer.innerHTML += `
+                <div class="room-card" data-aos="fade-up">
+                    <div class="room-img"><img src="${room.image}" alt="${room.name}"></div>
+                    <div class="room-details">
+                        <h3>${room.name}</h3>
+                        <div style="display: flex; gap: 15px; color: var(--text-light); font-size: 0.9rem; margin-bottom: 15px;">
+                            <span><i class="fa-solid fa-user-group"></i> ${room.guests}</span>
+                            <span><i class="fa-solid fa-expand"></i> ${room.size}</span>
+                        </div>
+                        <div class="room-price">${room.price} <span style="font-size:0.85rem; color:var(--text-light)">/ night</span></div>
+                        <a href="#contact" class="btn-outline">Inquire Now</a>
+                    </div>
+                </div>
+            `;
+        });
+
+        AOS.init({ once: true, duration: 800 });
+    </script>
+</body>
+</html>

@@ -31,7 +31,7 @@
         .hero-content h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 20px; }
         .hero-content p { font-size: clamp(1rem, 2vw, 1.25rem); max-width: 600px; margin: 0 auto 30px; color: #E2E8F0; }
 
-        /* Sections & Grids (Simplified for Template Engine) */
+        /* Sections & Grids */
         .section { padding: 100px 8%; }
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
         .about-text h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
@@ -96,8 +96,7 @@
             <h4 style="color: var(--accent); text-transform: uppercase; letter-spacing: 2px;">Accommodation</h4>
             <h2>Rooms & Luxury Suites</h2>
         </div>
-        <div class="rooms-grid" id="rooms-container">
-            </div>
+        <div class="rooms-grid" id="rooms-container"></div>
     </section>
 
     <footer id="contact">
@@ -118,10 +117,10 @@
         </div>
     </footer>
 
-    <script src="data.js"></script>
+    <!-- Cache-busting version parameter added -->
+    <script src="data.js?v=2"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Inject Data into HTML Elements Automatically
         document.getElementById('page-title').innerText = `${hotelData.name} | Luxury Hotel`;
         document.getElementById('nav-logo').innerHTML = `${hotelData.name.split(' ')[0]} <span>${hotelData.name.split(' ').slice(1).join(' ')}</span>`;
         document.getElementById('hero-bg').style.backgroundImage = `linear-gradient(rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.7)), url('${hotelData.heroImage}')`;
@@ -141,7 +140,6 @@
         document.getElementById('f-email').innerText = hotelData.email;
         document.getElementById('copy-name').innerText = hotelData.name;
 
-        // Render Rooms Dynamically
         const roomsContainer = document.getElementById('rooms-container');
         hotelData.rooms.forEach(room => {
             roomsContainer.innerHTML += `
